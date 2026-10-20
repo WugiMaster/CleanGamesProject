@@ -1,4 +1,5 @@
-<img width="1157" height="713" alt="Screenshot 2026-10-16 110855" src="https://github.com/user-attachments/assets/df72e214-1579-4f52-96d1-9bae21cd6dc2" />
+<img width="1220" height="742" alt="Снимок экрана 2026-10-20 144937" src="https://github.com/user-attachments/assets/23b131b3-1ce1-4e27-ac2a-6fa1ca696e60" />
+
 
 CleanGames ir interneta spēļu veikala datubāze (Steam / Epic Games tipa), ko veidoju ar Python un SQLite.
 Programma ļauj pievienot lietotājus un spēles, nopirkt spēli, meklēt spēles, mainīt cenu, dzēst spēles un apskatīt pasūtījumus.
