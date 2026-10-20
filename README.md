@@ -1,47 +1,18 @@
-# Spēļu veikals — individuālā datubāze
+<img width="1157" height="713" alt="Screenshot 2026-10-16 110855" src="https://github.com/user-attachments/assets/df72e214-1579-4f52-96d1-9bae21cd6dc2" />
 
-## Projekta mērķis
-Interneta spēļu veikala (Steam / Epic Games tipa) datubāze ar Python programmu.
-Programma ļauj pievienot, skatīt, meklēt, labot un dzēst ierakstus visās 10 tabulās,
-kā arī nopirkt spēli (vienā darījumā tiek izveidots pasūtījums, maksājums un ieraksts bibliotēkā).
+CleanGames ir interneta spēļu veikala datubāze (Steam / Epic Games tipa), ko veidoju ar Python un SQLite.
+Programma ļauj pievienot lietotājus un spēles, nopirkt spēli, meklēt spēles, mainīt cenu, dzēst spēles un apskatīt pasūtījumus.
 
-## Datubāzes struktūra (SQLite, 10 tabulas)
-`users`, `developers`, `genres`, `games`, `orders`, `orderitems`, `library`,
-`reviews`, `discounts`, `payments`.
+-- Kā palaist
+Vajag tikai Python 3.
 
-Galvenās saites:
-- `games.dev_id` → `developers.dev_id`, `games.genre_id` → `genres.genre_id`
-- `orders.user_id` → `users.user_id`
-- `orderitems.order_id` → `orders.order_id`, `orderitems.game_id` → `games.game_id`
-- `library` (pāris `user_id` + `game_id` ir unikāls), `reviews`, `discounts`, `payments` atsaucas uz `users`, `games`, `orders`
+1. python main.py — izveido datubāzi un tabulas
+2. python app.py — grafiskais logs
 
-## Nepieciešamais
-- Python 3.10+ (sqlite3 un tkinter ir iekļauti Python)
-- Papildu pakotnes nav jāinstalē
+-- Datubāze (10 tabulas)
+users, developers, genres, games, orders, orderitems, library, reviews, discounts, payments
 
-## Datubāzes sagatavošana un palaišana
-1. `python functions.py` — izveido `spelu_veikals.db`, tabulas un testa datus (var palaist atkārtoti, dati nedublējas)
-2. `python app.py` — atver grafisko logu (ja datubāzes fails nav izveidots, `app.py` to izveido pats)
-
-## Faili
-| Fails | Apraksts |
-|---|---|
-| `functions.py` | datubāzes un tabulu izveide, testa dati |
-| `main.py` | darbības ar datubāzi: pievienot, skatīt, labot, dzēst, meklēt, pirkt spēli |
-| `app.py` | grafiskais interfeiss (tkinter) |
-| `shema.sql` | tabulu struktūra (SQL) |
-
-## Galvenās funkcijas
-- Izvēlas tabulu no saraksta un redz visus ierakstus
-- **Pievienot / Labot / Dzēst** ierakstu (ievadītie dati tiek pārbaudīti: tips, tukši lauki)
-- **Meklēt** izvēlētajā kolonnā
-- **Pirkt spēli** (`buy_game`): pārbauda bilanci un vai spēle jau ir bibliotēkā, piemēro atlaidi no `discounts`, izveido ierakstus `orders`, `orderitems`, `payments`, `library` un samazina bilanci
-- **Pārskati** ar JOIN: spēles ar izstrādātāju un žanru, pasūtījumi ar lietotāju un spēli
-
-Visi SQL vaicājumi izmanto parametrus (`?`), tabulu un kolonnu nosaukumi tiek pārbaudīti pēc saraksta `TABLES`.
-Dati tiek saglabāti failā `spelu_veikals.db` un paliek pēc programmas restartēšanas.
-
-## Zināmās problēmas
-- Ierakstu, uz kuru atsaucas citas tabulas (piemēram, spēli, kas jau nopirkta), nevar izdzēst — `FOREIGN KEY` aizsardzība parāda kļūdas paziņojumu
-- Maksājums ir simulēts (reāls maksājumu pakalpojums nav pieslēgts)
-- Pasūtījumā ir tikai viena spēle (viens `orderitems` ieraksts)
+-- Zināmās problēmas
+Spēli, kas jau ir nopirkta, nevar izdzēst
+Maksājums ir tikai imitācija
+Atlaides un atsauksmes pagaidām netiek izmantotas programmā
