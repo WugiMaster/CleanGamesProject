@@ -1,4 +1,5 @@
 <img width="1220" height="742" alt="Снимок экрана 2026-10-20 144937" src="https://github.com/user-attachments/assets/23b131b3-1ce1-4e27-ac2a-6fa1ca696e60" />
+
 # CleanGamesProject
 
 <p align="center">
