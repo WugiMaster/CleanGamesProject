@@ -160,24 +160,6 @@ def delete_record():
         load_table()
 
 
-def buy_game():
-    dialog = FormDialog(root, "Pirkt spēli", ["Lietotāja ID", "Spēles ID", "Maksājuma veids"], ["", "", "card"])
-    if dialog.result is None:
-        return
-    try:
-        user_id = int(dialog.result[0])
-        game_id = int(dialog.result[1])
-        method = dialog.result[2].strip()
-    except ValueError:
-        messagebox.showerror("Kļūda", "ID laukiem jābūt skaitļiem.")
-        return
-
-    if not method:
-        return
-    result = run(db.buy_game, user_id, game_id, method)
-    if result:
-        messagebox.showinfo("Pirkums veiksmīgs", f"Pasūtījums #{result[0]}, cena: {result[1]}")
-        show_overview("Pasūtījumi")
 
 
 root = ttk.Window(themename="superhero")
@@ -236,7 +218,6 @@ ttk.Button(buttons, text="+ Pievienot", bootstyle=SUCCESS, command=add_record).p
 ttk.Button(buttons, text="Labot", bootstyle=WARNING, command=edit_record).pack(side=LEFT, padx=(0, 8))
 ttk.Button(buttons, text="Dzēst", bootstyle=DANGER, command=delete_record).pack(side=LEFT, padx=(0, 24))
 
-ttk.Button(buttons, text="🛒 Pirkt spēli", bootstyle=PRIMARY, command=buy_game).pack(side=LEFT, padx=(0, 24))
 
 for name in OVERVIEWS:
     ttk.Button(
